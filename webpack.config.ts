@@ -16,7 +16,7 @@ export default (env: EnvVariables) => {
 
   const config: webpack.Configuration = {
     mode,
-    entry: path.resolve(__dirname, "src", "index.ts"),
+    entry: path.resolve(__dirname, "src", "index.tsx"),
     output: {
       path: path.resolve(__dirname, "build"),
       filename: "[name].[contenthash].js",
@@ -33,6 +33,14 @@ export default (env: EnvVariables) => {
           test: /\.tsx?$/,
           use: "ts-loader",
           exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
     },
