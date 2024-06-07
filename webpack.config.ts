@@ -1,6 +1,7 @@
 import path from "path";
 import webpack from "webpack";
 import HTMLWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { Configuration as _DevServerConfiguration } from "webpack-dev-server";
 
 type Mode = "production" | "development";
@@ -26,6 +27,11 @@ export default (env: EnvVariables) => {
       new HTMLWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
       }),
+      !isDev &&
+        new MiniCssExtractPlugin({
+          filename: "css/[name].[contenthash].css",
+          chunkFilename: "css/[name].[contenthash].css",
+        }),
     ],
     module: {
       rules: [
@@ -36,11 +42,18 @@ export default (env: EnvVariables) => {
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: [
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+          ],
         },
         {
           test: /\.s[ac]ss$/i,
-          use: ["style-loader", "css-loader", "sass-loader"],
+          use: [
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader",
+          ],
         },
       ],
     },
