@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import * as classes from "./App.module.scss";
 import "./App.css";
@@ -12,6 +13,7 @@ export const App = () => {
     <>
       <p className={classes.counter}>{counter}</p>
       <button onClick={increment}>Click</button>
+      <Outlet />
     </>
   );
 };
