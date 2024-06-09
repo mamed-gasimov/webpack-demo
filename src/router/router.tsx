@@ -1,13 +1,16 @@
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import { App } from "../components/App";
-import { AboutLazy, ShopLazy, UsersPageLazy } from "../pages";
+import { AboutLazy, HomePageLazy, ShopLazy, UsersPageLazy } from "@/pages";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Suspense fallback="Loading...">
+        <HomePageLazy />
+      </Suspense>
+    ),
     children: [
       {
         path: "/about",
