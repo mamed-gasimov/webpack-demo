@@ -1,8 +1,17 @@
 {
   "name": "module-federation-demo",
   "version": "1.0.0",
+  "scripts": {
+    "dev:admin": "cd services/admin && npm run dev",
+    "dev:shop": "cd services/shop && npm run dev",
+    "dev:host": "cd services/host && npm run dev",
+    "start": "concurrently \"npm run dev:admin\" \"npm run dev:shop\" \"npm run dev:host\""
+  },
   "workspaces": [
     "packages/*",
     "services/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
