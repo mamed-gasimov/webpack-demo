@@ -3,6 +3,7 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 import { BuildOptions } from "./types/types";
 
@@ -18,7 +19,10 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
   ];
 
   if (isDev) {
-    plugins.push(new ForkTsCheckerWebpackPlugin());
+    plugins.push(
+      new ForkTsCheckerWebpackPlugin(),
+      new ReactRefreshWebpackPlugin()
+    );
   }
 
   if (isProd) {

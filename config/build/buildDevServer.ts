@@ -8,5 +8,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: true,
     // for router to work
     historyApiFallback: true,
+    hot: true,
   };
 }
