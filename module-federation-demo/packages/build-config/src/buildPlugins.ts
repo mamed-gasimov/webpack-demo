@@ -18,6 +18,7 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
     new HTMLWebpackPlugin({
       template: paths.html,
       favicon: path.resolve(paths.public, "favicon.ico"),
+      publicPath: "/",
     }),
   ];
 
