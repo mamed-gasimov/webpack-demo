@@ -1,11 +1,15 @@
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { UserCard } from "@packages/shared/src/components/UserCard";
 import { App } from "@/components/App/App";
 import { Shop } from "@/pages/Shop";
 
 const routes = [
+  {
+    path: "/",
+    element: <Navigate to="/shop" replace />,
+  },
   {
     path: "/shop",
     element: <App />,
